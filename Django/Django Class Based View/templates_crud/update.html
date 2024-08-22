@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4 class="text-center alert alert-info">Add New Student</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-success" type="submit" value="Update" />
+           </form>
+           <a class="btn btn-primary" href={% url 'home-student' %}>Back to home</a>
+    </div>
+</div>
+{% endblock content %}

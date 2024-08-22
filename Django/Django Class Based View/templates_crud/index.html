@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="text-center alert alert-info">Add New Student</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-success" type="submit" value="Add" />
+            </form>
+        </div>
+        <div class="col-sm-7 offset-1">
+            <h4 class="text-center alert alert-info">Show Student Info</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>  
+                <tbody>
+                    {% for info in student %}
+                    <tr>
+                        <td>{{ info.id }}</td>
+                        <td>{{ info.name }}</td>
+                        <td>{{ info.email }}</td>
+                        <td>{{ info.password }}</td>
+                        <td>
+                            <a type="button" class="btn btn-warning" href={% url 'update-student' info.id %}>Edit</a>
+                            <a type="button" class="btn btn-danger" href={% url 'delete-student' info.id %}>Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>  
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
